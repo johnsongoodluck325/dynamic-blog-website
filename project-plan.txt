@@ -1,0 +1,18 @@
+Dynamic Blog Website Plan
+
+Pages:
+- index.html: Homepage showing all posts
+- new-post.html: Create new posts
+- post.html: View, edit, delete posts
+
+Features:
+- CRUD operations using JavaScript
+- Posts stored in localStorage
+- Responsive layout using CSS
+- Git version control with feature branches
+
+Workflow:
+Each feature implemented in separate Git branch
+Merged using pull requests
+Dynamic Blog Website built with HTML, CSS, and JavaScript.
+Supports creating, viewing, editing, and deleting posts using localStorage.

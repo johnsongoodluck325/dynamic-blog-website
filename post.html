@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Post</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<header>
+  <h1>View Post</h1>
+  <a href="index.html" class="btn">← Back</a>
+</header>
+
+<main>
+  <form id="editForm" class="form">
+    <input id="title" required />
+    <textarea id="content" required></textarea>
+
+    <div class="actions">
+      <button type="submit" class="btn">Save Changes</button>
+      <button type="button" id="deleteBtn" class="btn danger">Delete</button>
+    </div>
+  </form>
+</main>
+
+<script src="script.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
+  let posts = getPosts();
+  const post = posts.find(p => p.id === id);
+
+  if (!post) {
+    alert("Post not found");
+    window.location.href = "index.html";
+  }
+
+  title.value = post.title;
+  content.value = post.content;
+
+  document.getElementById("editForm").addEventListener("submit", e => {
+    e.preventDefault();
+
+    post.title = title.value;
+    post.content = content.value;
+
+    savePosts(posts);
+    window.location.href = "index.html";
+  });
+
+  document.getElementById("deleteBtn").addEventListener("click", () => {
+    if (confirm("Delete this post?")) {
+      posts = posts.filter(p => p.id !== id);
+      savePosts(posts);
+      window.location.href = "index.html";
+    }
+  });
+</script>
+
+</body>
+</html>
