@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>New Post</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<header>
+  <h1>Create New Post</h1>
+  <a href="index.html" class="btn">← Back</a>
+</header>
+
+<main>
+  <form id="postForm" class="form">
+    <input id="title" type="text" placeholder="Post Title" required />
+    <textarea id="content" placeholder="Write your post..." required></textarea>
+    <button type="submit" class="btn">Publish Post</button>
+  </form>
+</main>
+
+<script src="script.js"></script>
+<script>
+  document.getElementById("postForm").addEventListener("submit", e => {
+    e.preventDefault();
+
+    const posts = getPosts();
+
+    posts.push({
+      id: generateId(),
+      title: title.value,
+      content: content.value,
+      date: new Date().toLocaleString()
+    });
+
+    savePosts(posts);
+    window.location.href = "index.html";
+  });
+</script>
+
+</body>
+</html>
