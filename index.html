@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic Blog</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header>
+    <h1>My Blog</h1>
+    <a class="new-post-btn" href="new-post.html">+ New Post</a>
+  </header>
+
+  <main>
+    <section id="posts-container">
+      <!-- Posts will load here -->
+    </section>
+  </main>
+
+  <script>
+    const container = document.getElementById("posts-container");
+
+    function loadPosts() {
+      const posts = JSON.parse(localStorage.getItem("blogPosts")) || [];
+
+      if (posts.length === 0) {
+        container.innerHTML = "<p>No posts yet. Create your first post!</p>";
+        return;
+      }
+
+      container.innerHTML = posts.map(post => `
+        <article class="post-card">
+          <h2>${post.title}</h2>
+          <p class="date">${post.date}</p>
+          <p>${post.content.substring(0, 120)}...</p>
+          <a class="read-more" href="post.html?id=${post.id}">Read More</a>
+        </article>
+      `).join("");
+    }
+
+    loadPosts();
+  </script>
+
+</body>
+</html>
